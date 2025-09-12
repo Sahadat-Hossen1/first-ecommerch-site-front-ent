@@ -49,7 +49,7 @@ const NavBar = () => {
             {ulItems}
           </ul>
         </div>
-        <a className="text-xl hover:bg-primary hover:text-white rounded-3xl ">Ecommerch site</a>
+        <a className="text-xl hover:text-primary rounded-3xl ">Ecommerch site</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{ulItems}</ul>

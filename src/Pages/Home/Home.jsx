@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ProductData } from '../../Context/DataContext/ProductDataCom';
 
 const Home = () => {
+    const {user}=useContext(ProductData)
     return (
         <div>
-            home
+            for test context setup
+            {user.name}
         </div>
     );
 };
