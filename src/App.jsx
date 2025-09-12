@@ -1,11 +1,10 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './Layout/router/router';
 
 const App = () => {
   return (
-    <div className='text-center'>
-hello
-
-    </div>
+  <RouterProvider router={router}></RouterProvider>
   );
 };
 
