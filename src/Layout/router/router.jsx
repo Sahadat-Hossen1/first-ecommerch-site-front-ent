@@ -5,6 +5,7 @@ import Contact from "../../Pages/Contact/Contact";
 import Login from "../../Pages/Login&SingUp/Login/Login";
 import Singup from "../../Pages/Login&SingUp/SingUp/Singup";
 import Main from "../Main/Main";
+import AllProduct from './../../Pages/AllProduct/AllProduct';
 
 export const router=createBrowserRouter([
     {
@@ -18,6 +19,9 @@ export const router=createBrowserRouter([
             {
                 path:"/about",
                 element:<About></About>
+            },{
+                path:"/allproduct",
+                element:<AllProduct></AllProduct>
             },
             {
                 path:"/contact",

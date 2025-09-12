@@ -1,9 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import NavBar from "../../Components/NavBar/NavBar";
 
 const Main = () => {
   return (
     <div>
+      <div className="">
+
+      <NavBar></NavBar>
+      </div>
       <div className="flex">
         <div className="w-[15%]">jgj</div>
         <div className="h-screen w-[80%]">

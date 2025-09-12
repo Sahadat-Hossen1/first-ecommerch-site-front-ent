@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Singup = () => {
+const AllProduct = () => {
     return (
         <div>
-            singup
+            all product
         </div>
     );
 };
 
-export default Singup;
+export default AllProduct;
