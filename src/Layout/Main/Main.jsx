@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../../Components/NavBar/NavBar";
 import Filter from "../../Components/Filter/Filter";
+import { ProductDataContext } from "../../Context/DataContext/ProductDataCom";
 
 const Main = () => {
+  const { Error } = useContext(ProductDataContext);
   return (
     <div>
-      <div className="">
-
-      <NavBar></NavBar>
+      <div>
+        <NavBar></NavBar>
+        {Error && <h1>Error message is:{Error} </h1>}
       </div>
-      <div className="flex">
-        <div className="w-[15%] border-e  ">
-        <Filter></Filter>
+      <div className="flex h-screen">
+        <div className="hidden md:block md:w-[15%] md:border-e  ">
+          <Filter></Filter>
         </div>
-        <div className="h-screen w-[80%]">
+        <div className=" w-[80%] mx-auto">
           <Outlet></Outlet>
         </div>
       </div>

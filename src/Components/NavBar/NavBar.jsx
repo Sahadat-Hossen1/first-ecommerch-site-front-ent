@@ -54,9 +54,9 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{ulItems}</ul>
       </div>
-      <div className="navbar-end flex ">
+      <div className=" navbar-end flex sm:flex-row ">
         <div class="flex gap-2">
-          <form className="flex items-center border rounded-3xl px-3 ">
+          <form className="hidden md:flex items-center border rounded-3xl px-3 ">
             <input
               type="text"
               placeholder="search what you need"

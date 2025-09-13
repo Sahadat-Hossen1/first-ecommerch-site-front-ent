@@ -5,8 +5,8 @@ const Filter = () => {
         <div>
             <ul>
                 <li>sony</li>
-                <li>Lg</li>
-                <li>Samsung</li>
+                <li>lg</li>
+                <li>song</li>
             </ul>
         </div>
     );
