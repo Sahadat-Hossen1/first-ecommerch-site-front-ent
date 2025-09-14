@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ProductDataContext } from "../../Context/DataContext/ProductDataCom";
 
 const AllProduct = () => {
-  const { Product_Data, Loading, Error } = useContext(ProductDataContext);
+  const { After_Filter_Data, Loading, Error } = useContext(ProductDataContext);
  
   return (
     <div className="flex mx-auto">
@@ -12,7 +12,7 @@ const AllProduct = () => {
       )}
       <div className=" grid grid-cols-1  md:grid-cols-3  mx-auto gap-2  py-2 ">
         {" "}
-        {Product_Data.map((product, i) => (
+        {After_Filter_Data.map((product, i) => (
           // <div
           //   key={i}
           //   className="card w-[350px] md:w-72 bg-white shadow-lg rounded-2xl hover:shadow-2xl transition-all duration-300 border border-gray-100"
