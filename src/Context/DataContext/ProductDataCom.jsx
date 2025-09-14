@@ -11,6 +11,8 @@ const ProductDataCom = ({ children }) => {
   const [selectedBrand, setSelectedBrand] = useState([]);
   //for selecet category
   const [SelectedCategory, setSelectedCategory] = useState([]);
+  //for unic color select
+  const [SelectedColor,setSelectedColor]=useState([]);
   //fetch json
   useEffect(() => {
     const fetchProduct = async () => {
@@ -43,32 +45,38 @@ const ProductDataCom = ({ children }) => {
   ];
   //for filter with unic color
   const unicColor = [...new Set(Product_Data.map((product) => product.color))];
-  console.log(unicColor);
+  // console.log(unicColor);
 
   //for product  filter with brand name
   useEffect(() => {
     try {
       let filtered = Product_Data;
+      //for brand filter
       if (selectedBrand.length > 0) {
         filtered = Product_Data.filter((product) => {
           return selectedBrand.includes(product.brand);
         });
       }
+      //for category filter
       if (SelectedCategory.length > 0) {
         filtered = filtered.filter((product) => {
           return SelectedCategory.includes(product.category);
         });
       }
+      //for filter with color
+      if (SelectedColor.length>0) {
+         filtered=filtered.filter((product)=>SelectedColor.includes(product.color));
+      }
       setAfter_Filter_Data(filtered);
       //  console.log(selectedBrand);
     } catch (error) {
-      // setError(error.message)
+      setError(error.message)
       console.log(error);
     }
-  }, [selectedBrand, SelectedCategory, Product_Data]);
-  useEffect(() => {
-    console.log(After_Filter_Data);
-  }, [After_Filter_Data]);
+  }, [selectedBrand, SelectedCategory,SelectedColor, Product_Data]);
+  // useEffect(() => {
+  //   console.log(After_Filter_Data);
+  // }, [After_Filter_Data]);
 
   //for sending product to other components
   const DataInfo = {
@@ -85,6 +93,8 @@ const ProductDataCom = ({ children }) => {
     unicCategrory,
     SelectedCategory,
     setSelectedCategory,
+    unicColor,SelectedColor,setSelectedColor,
+
   };
   return (
     <ProductDataContext.Provider value={DataInfo}>

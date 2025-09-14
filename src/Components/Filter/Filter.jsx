@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ProductDataContext } from "../../Context/DataContext/ProductDataCom";
 import FilterCategory from "./FilterCategory";
+import FilterColor from "./FilterColor";
 
 const Filter = () => {
   const {
@@ -58,6 +59,7 @@ const Filter = () => {
         </div>
       </div>
       <FilterCategory></FilterCategory>
+      <FilterColor></FilterColor>
     </div>
   );
 };
