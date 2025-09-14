@@ -9,6 +9,8 @@ const ProductDataCom = ({ children }) => {
   const [SearchIndex, setSearchIndex] = useState("");
   //for selected brand name and category name
   const [selectedBrand, setSelectedBrand] = useState([]);
+  //for selecet category
+  const [SelectedCategory, setSelectedCategory] = useState([]);
   //fetch json
   useEffect(() => {
     const fetchProduct = async () => {
@@ -35,44 +37,38 @@ const ProductDataCom = ({ children }) => {
   const UnicBrandName = [
     ...new Set(Product_Data.map((product) => product.brand)),
   ];
+  //for find all unic category name
+  const unicCategrory = [
+    ...new Set(Product_Data.map((product) => product.category)),
+  ];
+  //for filter with unic color
+  const unicColor = [...new Set(Product_Data.map((product) => product.color))];
+  console.log(unicColor);
+
   //for product  filter with brand name
-useEffect(()=>{
-  try {
-    let filtered=Product_Data;
-     if(selectedBrand.length > 0){
-      filtered=Product_Data.filter((product)=>{
-       return selectedBrand.includes(product.brand)
-      })
+  useEffect(() => {
+    try {
+      let filtered = Product_Data;
+      if (selectedBrand.length > 0) {
+        filtered = Product_Data.filter((product) => {
+          return selectedBrand.includes(product.brand);
+        });
+      }
+      if (SelectedCategory.length > 0) {
+        filtered = filtered.filter((product) => {
+          return SelectedCategory.includes(product.category);
+        });
+      }
+      setAfter_Filter_Data(filtered);
+      //  console.log(selectedBrand);
+    } catch (error) {
+      // setError(error.message)
+      console.log(error);
     }
-    setAfter_Filter_Data(filtered)
-    //  console.log(selectedBrand);
-     
-  } catch (error) {
-    // setError(error.message)
-    console.log(error);
-
-    
-  }
-},[selectedBrand,Product_Data])
-// useEffect(()=>{
-//   console.log(After_Filter_Data)
-// },[After_Filter_Data]);
-  // useEffect(() => {
-  //   try {
-  //     let filtered = Product_Data;
-
-  //     if (selectedBrand.length > 0) {
-  //       filtered = Product_Data.filter((product) =>
-  //         selectedBrand.includes(product.brand)
-  //       );
-  //     }
-
-  //     setAfter_Filter_Data(filtered);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-  // }, [selectedBrand, Product_Data]);
-  
+  }, [selectedBrand, SelectedCategory, Product_Data]);
+  useEffect(() => {
+    console.log(After_Filter_Data);
+  }, [After_Filter_Data]);
 
   //for sending product to other components
   const DataInfo = {
@@ -82,10 +78,13 @@ useEffect(()=>{
     setLoading,
     Error,
     setError,
+    After_Filter_Data,
     UnicBrandName,
     selectedBrand,
     setSelectedBrand,
-    After_Filter_Data,
+    unicCategrory,
+    SelectedCategory,
+    setSelectedCategory,
   };
   return (
     <ProductDataContext.Provider value={DataInfo}>
