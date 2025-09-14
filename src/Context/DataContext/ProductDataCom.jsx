@@ -45,7 +45,7 @@ useEffect(()=>{
       })
     }
     setAfter_Filter_Data(filtered)
-     console.log(selectedBrand);
+    //  console.log(selectedBrand);
      
   } catch (error) {
     // setError(error.message)
@@ -54,9 +54,9 @@ useEffect(()=>{
     
   }
 },[selectedBrand,Product_Data])
-useEffect(()=>{
-  console.log(After_Filter_Data)
-},[After_Filter_Data]);
+// useEffect(()=>{
+//   console.log(After_Filter_Data)
+// },[After_Filter_Data]);
   // useEffect(() => {
   //   try {
   //     let filtered = Product_Data;
