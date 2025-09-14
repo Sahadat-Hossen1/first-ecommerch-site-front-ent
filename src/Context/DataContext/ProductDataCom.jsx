@@ -12,7 +12,10 @@ const ProductDataCom = ({ children }) => {
   //for selecet category
   const [SelectedCategory, setSelectedCategory] = useState([]);
   //for unic color select
-  const [SelectedColor,setSelectedColor]=useState([]);
+  const [SelectedColor, setSelectedColor] = useState([]);
+  //for price filter
+  const [minPirce,setMinPrice]=useState(0);
+  const [maxPrice,setMaxprice]=useState()
   //fetch json
   useEffect(() => {
     const fetchProduct = async () => {
@@ -45,7 +48,6 @@ const ProductDataCom = ({ children }) => {
   ];
   //for filter with unic color
   const unicColor = [...new Set(Product_Data.map((product) => product.color))];
-  // console.log(unicColor);
 
   //for product  filter with brand name
   useEffect(() => {
@@ -64,19 +66,27 @@ const ProductDataCom = ({ children }) => {
         });
       }
       //for filter with color
-      if (SelectedColor.length>0) {
-         filtered=filtered.filter((product)=>SelectedColor.includes(product.color));
+      if (SelectedColor.length > 0) {
+        filtered = filtered.filter((product) =>
+          SelectedColor.includes(product.color)
+        );
+      }
+      //for price filter
+      if(minPirce && maxPrice){
+     
+        filtered=filtered.filter((product)=>product.price >=minPirce && product.price <=maxPrice)
       }
       setAfter_Filter_Data(filtered);
       //  console.log(selectedBrand);
     } catch (error) {
-      setError(error.message)
+      setError(error.message);
       console.log(error);
     }
-  }, [selectedBrand, SelectedCategory,SelectedColor, Product_Data]);
-  // useEffect(() => {
-  //   console.log(After_Filter_Data);
-  // }, [After_Filter_Data]);
+  }, [selectedBrand, SelectedCategory, SelectedColor,minPirce,maxPrice, Product_Data]);
+  useEffect(() => {
+    console.log(After_Filter_Data);
+    // console.log(After_Filter_Data.price);
+  }, [After_Filter_Data]);
 
   //for sending product to other components
   const DataInfo = {
@@ -93,8 +103,10 @@ const ProductDataCom = ({ children }) => {
     unicCategrory,
     SelectedCategory,
     setSelectedCategory,
-    unicColor,SelectedColor,setSelectedColor,
-
+    unicColor,
+    SelectedColor,
+    setSelectedColor,
+    minPirce,setMinPrice,maxPrice,setMaxprice
   };
   return (
     <ProductDataContext.Provider value={DataInfo}>
