@@ -5,8 +5,6 @@ const ProductDataCom = ({ children }) => {
   const [After_Filter_Data, setAfter_Filter_Data] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [Error, setError] = useState("");
-  //for input search
-  const [SearchIndex, setSearchIndex] = useState("");
   //for selected brand name and category name
   const [selectedBrand, setSelectedBrand] = useState([]);
   //for selecet category
@@ -14,8 +12,10 @@ const ProductDataCom = ({ children }) => {
   //for unic color select
   const [SelectedColor, setSelectedColor] = useState([]);
   //for price filter
-  const [minPirce,setMinPrice]=useState(0);
-  const [maxPrice,setMaxprice]=useState()
+  const [minPrice, setMinPrice] = useState();
+  const [maxPrice, setMaxprice] = useState();
+  //for input search
+  const [SearchIndex, setSearchIndex] = useState("");
   //fetch json
   useEffect(() => {
     const fetchProduct = async () => {
@@ -72,9 +72,10 @@ const ProductDataCom = ({ children }) => {
         );
       }
       //for price filter
-      if(minPirce && maxPrice){
-     
-        filtered=filtered.filter((product)=>product.price >=minPirce && product.price <=maxPrice)
+      if (minPrice && maxPrice) {
+        filtered = filtered.filter(
+          (product) => product.price >= minPrice && product.price <= maxPrice
+        );
       }
       setAfter_Filter_Data(filtered);
       //  console.log(selectedBrand);
@@ -82,11 +83,47 @@ const ProductDataCom = ({ children }) => {
       setError(error.message);
       console.log(error);
     }
-  }, [selectedBrand, SelectedCategory, SelectedColor,minPirce,maxPrice, Product_Data]);
-  useEffect(() => {
-    console.log(After_Filter_Data);
-    // console.log(After_Filter_Data.price);
-  }, [After_Filter_Data]);
+  }, [
+    selectedBrand,
+    SelectedCategory,
+    SelectedColor,
+    minPrice,
+    maxPrice,
+    Product_Data,
+  ]);
+// for filter with search input
+  //handlesubmit function
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const searchBox = form.inp.value.trim();
+   
+  try {
+    const filtered=Product_Data.filter((product)=>{
+      const search=searchBox.toLowerCase();
+     
+
+      return(
+      product?.model.toLowerCase().includes(search) ||
+      product?.brand.toLowerCase().includes(search) ||   
+      product?.title.toLowerCase().includes(search) ||
+      product?.category.toLowerCase().includes(search)|| 
+      product?.color.toLowerCase().includes(search) 
+      )
+      
+    })
+    setAfter_Filter_Data(filtered)
+  } catch (error) {
+    console.log(error);
+    
+  }
+//reset  the form
+    form.inp.value=''
+  };
+  //for console data
+  // useEffect(() => {
+  //   // console.log(After_Filter_Data);
+  // }, [After_Filter_Data,SearchIndex]);
 
   //for sending product to other components
   const DataInfo = {
@@ -106,7 +143,13 @@ const ProductDataCom = ({ children }) => {
     unicColor,
     SelectedColor,
     setSelectedColor,
-    minPirce,setMinPrice,maxPrice,setMaxprice
+    minPrice,
+    setMinPrice,
+    maxPrice,
+    setMaxprice,
+    SearchIndex,
+    setSearchIndex,
+    handleSubmit,
   };
   return (
     <ProductDataContext.Provider value={DataInfo}>

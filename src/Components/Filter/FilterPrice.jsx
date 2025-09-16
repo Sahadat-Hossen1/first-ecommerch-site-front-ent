@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { ProductDataContext } from "../../Context/DataContext/ProductDataCom";
 
 const FilterPrice = () => {
-  const { minPirce, setMinPrice, maxPrice, setMaxprice } =
+  const { minPrice, setMinPrice, maxPrice, setMaxprice } =
     useContext(ProductDataContext);
-  console.log(`minprice:${minPirce} && max:${maxPrice}`);
+  // console.log(`minprice:${minPrice} && max:${maxPrice}`);
 
   return (
     <div className="p-2">
@@ -14,7 +14,7 @@ const FilterPrice = () => {
           minimum price:<br/>
           <input
             type="number"
-            value={minPirce}
+            value={minPrice}
             onChange={(e) => setMinPrice(Number(e.target.value))}
             className="border px-1 py-1 rounded-2xl w-36"
           />
