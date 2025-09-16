@@ -57,22 +57,7 @@ useEffect(()=>{
 // useEffect(()=>{
 //   console.log(After_Filter_Data)
 // },[After_Filter_Data]);
-  // useEffect(() => {
-  //   try {
-  //     let filtered = Product_Data;
 
-  //     if (selectedBrand.length > 0) {
-  //       filtered = Product_Data.filter((product) =>
-  //         selectedBrand.includes(product.brand)
-  //       );
-  //     }
-
-  //     setAfter_Filter_Data(filtered);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-  // }, [selectedBrand, Product_Data]);
-  
 
   //for sending product to other components
   const DataInfo = {
