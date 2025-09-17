@@ -12,7 +12,7 @@ const Main = () => {
         <NavBar></NavBar>
         {Error && <h1>Error message is:{Error} </h1>}
       </div>
-      <div className="flex h-screen">
+      <div className="flex">
         <div className="hidden md:block md:w-[15%] md:border-e  ">
           <Filter></Filter>
         </div>

@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
+import { ProductDataContext } from "../../Context/DataContext/ProductDataCom";
 
 const NavBar = () => {
   const [user, setuser] = useState("");
+  const { setSearchIndex, SearchIndex,handleSubmit } = useContext(ProductDataContext);
+
+  //for ul items
   const ulItems = (
     <>
       <li>
@@ -18,7 +22,6 @@ const NavBar = () => {
       <li>
         <NavLink to="/contact">Contacat </NavLink>
       </li>
-      
     </>
   );
   return (
@@ -49,18 +52,25 @@ const NavBar = () => {
             {ulItems}
           </ul>
         </div>
-        <a className="text-xl hover:text-primary rounded-3xl ">Ecommerch site</a>
+        <a className="text-xl hover:text-primary rounded-3xl ">
+          Ecommerch site
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{ulItems}</ul>
       </div>
       <div className=" navbar-end flex sm:flex-row ">
         <div class="flex gap-2">
-          <form className="hidden md:flex items-center border rounded-3xl px-3 ">
+          <form
+            onSubmit={handleSubmit}
+            className="hidden md:flex items-center border rounded-3xl px-3 "
+          >
             <input
               type="text"
               placeholder="search what you need"
               name="inp"
+              // value={SearchIndex}
+              // onChange={(e) => setSearchIndex(e.target.value.trim().toLowerCase())}
               required
               className="focus:outline-none "
             />
@@ -101,12 +111,17 @@ const NavBar = () => {
                   <a>Settings</a>
                 </li>
                 <li>
-                  <a onClick={()=>setuser(false)}>Logout</a>
+                  <a onClick={() => setuser(false)}>Logout</a>
                 </li>
               </ul>
             </div>
           ) : (
-            <h1 className="btn btn-primary text-lg  rounded-3xl" onClick={()=>setuser(true)}>create an account</h1>
+            <h1
+              className="btn btn-primary text-lg  rounded-3xl"
+              onClick={() => setuser(true)}
+            >
+              create an account
+            </h1>
           )}
         </div>
       </div>
